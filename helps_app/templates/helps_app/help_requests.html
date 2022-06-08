@@ -1,0 +1,15 @@
+{% extends 'helps_app/base.html' %}
+
+{% block title %}
+    Список заявок на получение помощи
+{% endblock %}
+{% block header %}
+    <div></div><br>
+    {% if help_title %}
+      {% for title in help_title %}
+        <p><a href="{% url 'helps_app:help_request_detail' title.id %}"> {{ title }}</a></p>
+      {% endfor %}
+    {% else %}
+      <p>Нет заявок</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'helps_app/base.html' %}
+{% block title %}Get Help - Главная{% endblock %}
+
+{% block header %}
+  <h1>Это будет главная страница сайта</h1>
+{% endblock %}
+{% block content %}
+  <a href="{% url 'helps_app:help_requests' %}">Список заявок на получение помощи</a><br>
+  <a href="{% url 'helps_app:need_help' %}">Подать заявку на получение помощи</a>
+{% endblock %}

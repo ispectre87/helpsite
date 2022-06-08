@@ -1,0 +1,18 @@
+{% extends 'helps_app/base.html' %}
+
+{% block title %}
+    Информация по заявке
+{% endblock %}
+{% block header %}
+    <h2>Информация по заявке</h2>
+{% endblock %}
+{% block content %}
+    <p>Желаемая помощь:</p>
+    <p>{{ title }}</p>
+    <p>Дата подачи заявки:</p>
+    <p>{{ date }}</p>
+    <p>Детальная информация:</p>
+    <p>{{ text }}</p>
+    <p>Контактная информация:</p>
+    <p>{{ contacts }}</p>
+{% endblock %}
