@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import HelpRequest
+from .forms import CteateRequest
 
 def index(request):
     return render(request, 'helps_app/index.html')
@@ -10,7 +11,16 @@ def help_requests(request):
     return render(request, 'helps_app/help_requests.html', context)
 
 def need_help(request):
-    return render(request, 'helps_app/need_help.html')
+    if request.method != 'POST':
+        form = CteateRequest()
+
+    else:
+        form = CteateRequest(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('helps_app:request_added')
+    context = {'form': form}
+    return render(request, 'helps_app/need_help.html', context=context)
 
 def help_request_detail(request, title_id):
     help_detail = HelpRequest.objects.get(pk=title_id)
@@ -27,3 +37,7 @@ def help_request_detail(request, title_id):
         'contacts': contacts,
         }
     return render(request, 'helps_app/help_request_detail.html', context)
+
+def request_added(request):
+    return render(request, 'helps_app/request_added.html')
+

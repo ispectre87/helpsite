@@ -3,8 +3,13 @@
   Подать заявку
 {% endblock %}
 {% block header %}
-  <p>Здесь оформляется заявка на получение помощи</p>
+  <p>Введите информацию о вашей заявке</p>
 {% endblock %}
 {% block content %}
-  <p>Здесь будет форма для заявки</p>
+  <form action="{% url 'helps_app:need_help' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="submit">Подать заявку</button>
+
+  </form>
 {% endblock %}
