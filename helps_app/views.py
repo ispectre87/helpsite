@@ -18,8 +18,10 @@ def help_request_detail(request, title_id):
     text = help_detail.text
     date = help_detail.pub_date
     contacts = help_detail.contacts
+    city = help_detail.city
     context = {
         'title': title,
+        'city': city,
         'text': text,
         'date': date,
         'contacts': contacts,
