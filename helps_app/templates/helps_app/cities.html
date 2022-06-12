@@ -1,0 +1,14 @@
+{% extends 'helps_app/base.html' %}
+
+{% block title %}Выбор города{% endblock %}
+
+{% block header %}
+    <p>Выберите город из списка</p>
+{% endblock %}
+{% block content %}
+    <ul>
+        {% for city in cities %}
+        <li><a href="{% url 'helps_app:help_requests' region_id city.id  %}">{{ city }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -6,7 +6,7 @@
   <p>Введите информацию о вашей заявке</p>
 {% endblock %}
 {% block content %}
-  <form action="{% url 'helps_app:need_help' %}" method="post">
+  <form action="{% url 'helps_app:need_help' city_id %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button name="submit">Подать заявку</button>

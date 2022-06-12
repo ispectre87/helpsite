@@ -5,6 +5,13 @@
   <h1>Это будет главная страница сайта</h1>
 {% endblock %}
 {% block content %}
-  <a href="{% url 'helps_app:help_requests' %}">Список заявок на получение помощи</a><br>
-  <a href="{% url 'helps_app:need_help' %}">Подать заявку на получение помощи</a>
+  <p>Выберите область</p>
+  <ul>
+  {% for region in regions %}
+    <li>
+      <p><a href="{% url 'helps_app:cities' region.id %}">{{ region }}</a></p>
+    </li>
+  {% endfor %}
+  </ul>
+
 {% endblock %}
