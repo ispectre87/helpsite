@@ -8,7 +8,7 @@
 {% block content %}
     <ul>
         {% for city in cities %}
-        <li><a href="{% url 'helps_app:help_requests' region_id city.id  %}">{{ city }}</a></li>
+        <li><a href="{{ city.get_absolute_url }}">{{ city }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

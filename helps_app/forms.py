@@ -1,7 +1,7 @@
 from django import forms
 from .models import HelpRequest
 
-class CteateRequest(forms.ModelForm):
+class CreateRequest(forms.ModelForm):
     class Meta:
         model = HelpRequest
         fields = ['title', 'text', 'contacts']

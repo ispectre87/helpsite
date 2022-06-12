@@ -9,7 +9,7 @@
   <ul>
   {% for region in regions %}
     <li>
-      <p><a href="{% url 'helps_app:cities' region.id %}">{{ region }}</a></p>
+      <p><a href="{{ region.get_absolute_url }}">{{ region }}</a></p>
     </li>
   {% endfor %}
   </ul>

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import HelpRequest, City, Region
-from .forms import CteateRequest
+from .forms import CreateRequest
 
 def index(request):
     """Главная страница сайта"""
@@ -31,9 +31,9 @@ def help_requests(request, city_id, region_id):
 def need_help(request, city_id):
     """Форма заявки на помощь"""
     if request.method != 'POST':
-        form = CteateRequest()
+        form = CreateRequest()
     else:
-        form = CteateRequest(data=request.POST)
+        form = CreateRequest(data=request.POST)
         if form.is_valid():
             q = form.save(commit=False)
             q.citi_name_id = city_id
@@ -42,9 +42,9 @@ def need_help(request, city_id):
     context = {'form': form, 'city_id': city_id}
     return render(request, 'helps_app/need_help.html', context=context)
 
-def help_request_detail(request, title_id):
+def help_request_detail(request, help_id):
     """Полная информация по заявке"""
-    help_detail = HelpRequest.objects.get(pk=title_id)
+    help_detail = HelpRequest.objects.get(pk=help_id)
     title = help_detail.title
     text = help_detail.text
     date = help_detail.pub_date
