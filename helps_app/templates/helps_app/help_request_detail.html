@@ -7,14 +7,12 @@
     <h2>Информация по заявке</h2>
 {% endblock %}
 {% block content %}
-    <p>Город:</p>
-    <p> {{ city }}</p>
     <p>Желаемая помощь:</p>
-    <p>{{ title }}</p>
+    <p>{{ request_detail.title }}</p>
     <p>Дата подачи заявки:</p>
-    <p>{{ date }}</p>
+    <p>{{ request_detail.pubdate }}</p>
     <p>Детальная информация:</p>
-    <p>{{ text }}</p>
+    <p>{{ request_detail.text }}</p>
     <p>Контактная информация:</p>
-    <p>{{ contacts }}</p>
+    <p>{{ request_detail.contacts }}</p>
 {% endblock %}
