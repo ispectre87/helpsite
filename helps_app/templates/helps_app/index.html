@@ -1,11 +1,10 @@
 {% extends 'helps_app/base.html' %}
 {% block title %}Get Help - Главная{% endblock %}
 
-{% block header %}
-  <h1>Это будет главная страница сайта</h1>
-{% endblock %}
+
 {% block content %}
-  <p>Выберите область</p>
+  <div class="sidepanel">
+  <p class="region">Выберите область</p>
   <ul>
   {% for region in regions %}
     <li>
@@ -13,5 +12,8 @@
     </li>
   {% endfor %}
   </ul>
-
+  </div>
+  <div class="content">
+    <h1>Здесь будет какойто текст и может чтото еще.</h1>
+  </div>
 {% endblock %}

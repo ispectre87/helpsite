@@ -2,13 +2,16 @@
 
 {% block title %}Выбор города{% endblock %}
 
-{% block header %}
-    <p>Выберите город из списка</p>
-{% endblock %}
 {% block content %}
+    <div class="sidepanel"
+    <p>Выберите город из списка</p>
     <ul>
         {% for city in cities %}
         <li><a href="{{ city.get_absolute_url }}">{{ city }}</a></li>
         {% endfor %}
     </ul>
+    </div>
+    <div class="content">
+      <h1>Здесь будет какойто текст и может чтото еще.</h1>
+    </div>
 {% endblock %}

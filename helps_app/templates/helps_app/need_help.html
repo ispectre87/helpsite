@@ -2,14 +2,18 @@
 {% block title %}
   Подать заявку
 {% endblock %}
-{% block header %}
-  <p>Введите информацию о вашей заявке</p>
-{% endblock %}
+
 {% block content %}
+  <div class="sidepanel">
+    <p>sidebar</p>
+  </div>
+  <div class="content">
+   <p>Введите информацию о вашей заявке</p>
   <form action="{% url 'helps_app:need_help' city_id %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button name="submit">Подать заявку</button>
+   </div>
 
   </form>
 {% endblock %}

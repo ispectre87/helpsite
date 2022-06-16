@@ -1,12 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
+    <link type="text/css" href="{% static 'helps_app/css/styles.css' %}" rel="stylesheet">
 </head>
 <body>
-    <a href="{% url 'helps_app:index' %}">Главная страница</a>
+    {% block mainmenu %}
+        <div class="headmenu">
+        <ul>
+            <li><a href="{% url 'helps_app:index' %}">Главная страница</a></li>
+            <li><a>О сайте</a></li>
+            <li><a>Регистрация</a></li>
+            <li><a>Вход</a></li>
+        </ul>
+        </div>
+    {% endblock %}
     {% block header %}{% endblock %}
     {% block content %}{% endblock %}
+{% block footer %}
+    <div class="footer"><p style="margin-top: 8px">Все права защищены</p></div>
+{% endblock %}
 </body>
 </html>
+

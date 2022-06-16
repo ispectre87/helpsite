@@ -1,0 +1,46 @@
+html, body {
+    background: lavender;
+	font-family: 'Arial';
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	color: #444;
+}
+
+.headmenu {
+    background: orange;
+    padding:0;
+    margin:0;
+}
+
+.headmenu li {
+    margin: 10px;
+    display: inline;
+    font-size: 30px;
+}
+
+.footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    background: yellow;
+}
+
+.sidepanel {
+    display: block;
+    height:80%;
+    float: left;
+    background: paleTurquoise;
+    width: 250px;
+    margin-left: 5px;
+    margin-right: 20px;
+    }
+
+.content {
+    background: aqua;
+    padding-left: 20px;
+    height: 80%;
+}
