@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import HelpRequest, City, Region
-from .forms import CreateRequest
+from .forms import CreateRequest, UserRegister
 from django.views import generic
+from django.urls import reverse_lazy
+from django.contrib.auth import login, logout
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.forms import AuthenticationForm
 
 class HelpHomepage(generic.ListView):
     model = Region                          #модель на основании которой строится список
@@ -108,4 +112,38 @@ class HelpRequestDetail(generic.DetailView):
 
 def request_added(request):
     return render(request, 'helps_app/request_added.html')
+
+class Registration(generic.CreateView):
+    """Выводит форму регистрации"""
+    form_class = UserRegister
+    template_name = 'helps_app/registration.html'
+    success_url = reverse_lazy('helps_app:login')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('helps_app:index')
+
+
+class LoginUser(LoginView):
+    """Форма для входа на сайт"""
+    form_class = AuthenticationForm
+    template_name = 'helps_app/login.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('helps_app:index')
+
+def logout_user(request):
+    """Деавторизует пользователя, показывает прощальную страницу"""
+    logout(request)
+    return render(request, 'helps_app/logout.html')
+
 

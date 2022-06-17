@@ -12,8 +12,12 @@
         <ul>
             <li><a href="{% url 'helps_app:index' %}">Главная страница</a></li>
             <li><a>О сайте</a></li>
-            <li><a>Регистрация</a></li>
-            <li><a>Вход</a></li>
+            {% if request.user.is_authenticated %}
+                <li>Привет, {{ user.username }}   |   <a href="{% url 'helps_app:logout' %}">Выйти</a></li>
+            {% else %}
+            <li><a href="{% url 'helps_app:registration' %}">Регистрация</a></li>
+            <li><a href="{% url 'helps_app:login' %}">Вход</a></li>
+            {% endif %}
         </ul>
         </div>
     {% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'helps_app/base.html' %}
+{% block title %}Get Help - Главная{% endblock %}
+
+
+{% block content %}
+  <div class="sidepanel">
+  <p>Something</p>
+  </div>
+  <div class="content">
+    <h1>Введите ваши данные</h1>
+      <form method="post">
+          {% csrf_token %}
+          {% for f in form %}
+            <p><label for="{{ f.id_for_label }}">{{ f.label }} :</label> {{ f }}</p>
+            <div>{{ f.errors }}</div>
+          {% endfor %}
+          <button type="submit">Регистрация</button>
+      </form>
+  </div>
+{% endblock %}
