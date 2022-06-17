@@ -8,6 +8,9 @@ class HelpHomepage(generic.ListView):
     template_name = 'helps_app/index.html'  #имя шаблона
     context_object_name = 'regions'         #имя списка в самом шаблоне
 
+    def get_queryset(self):
+        return Region.objects.order_by('region_name')
+
 # def index(request):
 #     """Главная страница сайта"""
 #     regions = Region.objects.all()

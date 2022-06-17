@@ -7,9 +7,7 @@
   <p class="region">Выберите область</p>
   <ul>
   {% for region in regions %}
-    <li>
-      <p><a href="{{ region.get_absolute_url }}">{{ region.region_name }}</a></p>
-    </li>
+      <li><a href="{{ region.get_absolute_url }}">{{ region.region_name }}</a></li>
   {% endfor %}
   </ul>
   </div>
