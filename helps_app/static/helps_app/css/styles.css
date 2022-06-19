@@ -107,3 +107,18 @@ html, body {
     background: PaleTurquoise;
 }
 
+.left-title {
+    text-align: left;
+}
+.right-title {
+    text-align: right;
+}
+.paginator {
+    font-size: 30px;
+    text-align: center;
+}
+
+.paginator a {
+    font-size: 20px;
+}
+

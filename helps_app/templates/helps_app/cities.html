@@ -18,14 +18,28 @@
     {% endif %}
     <p>Чтобы показать заявки по конкретному городу или подать заявку на получение помощи <br> выберите город из списка на панели слева</p>
     <br>
-        {% if helprequests %}
-            {% for reqst in helprequests %}
-                <p class="request_title"><a href="{{ reqst.get_absolute_url }}">{{ reqst }}</a>-----{{ reqst.update|date:"d.m.y" }}</p>
+        {% if page_obj %}
+            {% for reqst in page_obj %}
+<p class="request_title"><a href="{{ reqst.get_absolute_url }}">{{ reqst }}</a><span style="float: right">{{ reqst.update|date:"d.m.y" }}</span></p>
                 <p class="request_text">{{ reqst.text|truncatewords:50 }}</p>
                 <br>
             {% endfor %}
         {% else %}
             <p>Заявок пока нет</p>
         {% endif %}
-
+        <div class="paginator">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&lt;&lt;Первая---</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">Пред({{ page_obj.previous_page_number }})</a>
+                {% endif %}
+                <span class="current">
+                     {{ page_obj.number }}
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">След({{ page_obj.next_page_number }})</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">---Последняя&gt;&gt;</a>
+                {% endif %}
+            </span>
+        </div>
 {% endblock %}

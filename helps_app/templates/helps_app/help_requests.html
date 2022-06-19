@@ -7,14 +7,29 @@
     <p><a href="{% url 'helps_app:need_help' city_id %}">Подать заявку</a></p>
 {% endblock %}
 {% block rightbody %}
-     {% if help_title %}
+     {% if page_obj %}
         <h2>Список заявок - {{ city_name }}</h2>
-      {% for title in help_title %}
-        <p class="request_title"><a href="{{ title.get_absolute_url }}">{{ title }}</a>-----{{ title.update|date:"d.m.y" }}</p>
+      {% for title in page_obj %}
+<p class="request_title"><a href="{{ title.get_absolute_url }}">{{ title }}</a><span style="float: right">{{ title.update|date:"d.m.y" }}</span></p>
         <p class="request_text">{{ title.text|truncatewords:50 }}</p>
         <br>
       {% endfor %}
-    {% else %}
-      <p>Пока нет заявок</p>
-    {% endif %}
+     {% else %}
+        <p>Пока нет заявок</p>
+     {% endif %}
+        <div class="paginator">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&lt;&lt;Первая---</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">Пред({{ page_obj.previous_page_number }})</a>
+                {% endif %}
+                <span class="current">
+                     {{ page_obj.number }}
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">След({{ page_obj.next_page_number }})</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">---Последняя&gt;&gt;</a>
+                {% endif %}
+            </span>
+        </div>
 {% endblock %}
