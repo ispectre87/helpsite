@@ -4,14 +4,13 @@
     Информация по заявке
 {% endblock %}
 
-{% block content %}
-    <h2>Информация по заявке</h2>
-    <p>Желаемая помощь:</p>
-    <p>{{ request_detail.title }}</p>
-    <p>Дата подачи заявки:</p>
-    <p>{{ request_detail.pubdate }}</p>
-    <p>Детальная информация:</p>
-    <p>{{ request_detail.text }}</p>
-    <p>Контактная информация:</p>
-    <p>{{ request_detail.contacts }}</p>
+{% block rightbody %}
+    <h2>Информация по заявке</h2><br>
+    <p  class="request_title">Дата подачи заявки: {{ request_detail.pub_date }}</p>
+    <p class="request_title">Желаемая помощь:</p>
+    <p class="request_text">{{ request_detail.title }}</p>
+    <p class="request_title">Детальная информация:</p>
+    <p class="request_text">{{ request_detail.text }}</p>
+    <p class="request_title">Контактная информация:</p>
+    <p class="request_text">{{ request_detail.contacts }}</p>
 {% endblock %}

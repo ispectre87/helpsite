@@ -2,16 +2,30 @@
 
 {% block title %}Выбор города{% endblock %}
 
-{% block content %}
-    <div class="sidepanel"
-    <p>Выберите город из списка</p>
+{% block leftbody %}
+    <h2 style="text-align: center">Выберите город:</h2>
     <ul>
         {% for city in cities %}
         <li><a href="{{ city.get_absolute_url }}">{{ city }}</a></li>
         {% endfor %}
     </ul>
-    </div>
-    <div class="content">
-      <h1>Здесь будет какойто текст и может чтото еще.</h1>
-    </div>
+{% endblock %}
+{% block rightbody %}
+    {% if 'Автономная Республика Крым' in region.region_name %}
+        <h2>{{ region }}  - список заявок по региону</h2>
+    {% else %}
+        <h2>{{ region }} область - список заявок по региону</h2>
+    {% endif %}
+    <p>Чтобы показать заявки по конкретному городу или подать заявку на получение помощи <br> выберите город из списка на панели слева</p>
+    <br>
+        {% if helprequests %}
+            {% for reqst in helprequests %}
+                <p class="request_title"><a href="{{ reqst.get_absolute_url }}">{{ reqst }}</a>-----{{ reqst.update|date:"d.m.y" }}</p>
+                <p class="request_text">{{ reqst.text|truncatewords:50 }}</p>
+                <br>
+            {% endfor %}
+        {% else %}
+            <p>Заявок пока нет</p>
+        {% endif %}
+
 {% endblock %}

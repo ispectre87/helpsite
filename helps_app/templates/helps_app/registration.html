@@ -2,11 +2,7 @@
 {% block title %}Get Help - Главная{% endblock %}
 
 
-{% block content %}
-  <div class="sidepanel">
-  <p>Something</p>
-  </div>
-  <div class="content">
+{% block rightbody %}
     <h1>Введите ваши данные</h1>
       <form method="post">
           {% csrf_token %}
@@ -16,5 +12,4 @@
           {% endfor %}
           <button type="submit">Регистрация</button>
       </form>
-  </div>
 {% endblock %}

@@ -28,6 +28,12 @@ class CitiesList(generic.ListView):
     template_name = 'helps_app/cities.html'
     context_object_name = 'cities'
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+        context['helprequests'] = HelpRequest.objects.filter(citi_name__region_id=self.kwargs['region_id'])
+        context['region'] = Region.objects.get(pk = self.kwargs['region_id'])
+        return context
+
     def get_queryset(self):
         return City.objects.filter(region_id=self.kwargs['region_id'])
 
@@ -48,6 +54,7 @@ class HelpRequests(generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
         context['city_id'] = self.kwargs['city_id']
+        context['city_name'] = City.objects.get(pk=self.kwargs['city_id']).city_name
         return context
 
     def get_queryset(self):
@@ -145,5 +152,8 @@ def logout_user(request):
     """Деавторизует пользователя, показывает прощальную страницу"""
     logout(request)
     return render(request, 'helps_app/logout.html')
+
+def about(request):
+    return render(request, "helps_app/about.html")
 
 

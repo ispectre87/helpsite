@@ -5,6 +5,7 @@ app_name = 'helps_app'
 
 urlpatterns = [
     path('', views.HelpHomepage.as_view(), name='index'),
+    path('about', views.about, name='about'),
     path('registration/', views.Registration.as_view(), name='registration'),
     path('login/', views.LoginUser.as_view(), name='login'),
     path('logout/', views.logout_user, name='logout'),
@@ -13,6 +14,4 @@ urlpatterns = [
     path('help_request_detail/<int:help_id>/', views.HelpRequestDetail.as_view(), name='help_request_detail'),
     path('need_help/<int:city_id>/', views.need_help, name='need_help'),
     path('request_added/', views.request_added, name='request_added'),
-
-
 ]

@@ -2,16 +2,19 @@
 {% block title %}Get Help - Главная{% endblock %}
 
 
-{% block content %}
-  <div class="sidepanel">
-  <p class="region">Выберите область</p>
+
+{% block leftbody %}
+  <h2 style="text-align: center">Выберите область:</h2>
   <ul>
   {% for region in regions %}
       <li><a href="{{ region.get_absolute_url }}">{{ region.region_name }}</a></li>
   {% endfor %}
   </ul>
-  </div>
-  <div class="content">
-    <h1>Здесь будет какойто текст и может чтото еще.</h1>
-  </div>
 {% endblock %}
+{% block rightbody %}
+  <h2>Добро пожаловать на сайт</h2>
+  <p>Чтобы иметь возможность подавать заявки сначала нужно пройти процедуру <a href="{% url 'helps_app:registration' %}">регистрации</a></p>
+  <p>Чтобы посмотреть заявки по регионам или подать заявку на помощь выберите облать из списка слева</p>
+
+{% endblock %}
+

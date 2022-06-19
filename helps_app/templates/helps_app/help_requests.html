@@ -1,22 +1,20 @@
 {% extends 'helps_app/base.html' %}
 
-{% block title %}
-    Список заявок на получение помощи
-{% endblock %}
-{% block content %}
-    <div class="sidepanel">
-    <p>Список заявок  по городу</p>
-    <div></div><br>
+{% block title %}Список заявок{% endblock %}
+
+{% block leftbody %}
+    <br>
     <p><a href="{% url 'helps_app:need_help' city_id %}">Подать заявку</a></p>
-    {% if help_title %}
+{% endblock %}
+{% block rightbody %}
+     {% if help_title %}
+        <h2>Список заявок - {{ city_name }}</h2>
       {% for title in help_title %}
-        <p><a href="{% url 'helps_app:help_request_detail' title.id %}"> {{ title.title }}</a></p>
+        <p class="request_title"><a href="{{ title.get_absolute_url }}">{{ title }}</a>-----{{ title.update|date:"d.m.y" }}</p>
+        <p class="request_text">{{ title.text|truncatewords:50 }}</p>
+        <br>
       {% endfor %}
     {% else %}
-      <p>Нет заявок</p>
+      <p>Пока нет заявок</p>
     {% endif %}
-    </div>
-    <div class="content">
-        <h1>Здесь будет какойто текст и может чтото еще.</h1>
-    </div>
 {% endblock %}
