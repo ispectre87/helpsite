@@ -1,5 +1,6 @@
 from django.db import models
 from django.shortcuts import reverse
+from django.contrib.auth.models import User
 
 class Region(models.Model):
     """Список областей """
@@ -34,6 +35,7 @@ class City(models.Model):
 class HelpRequest(models.Model):
     """Список заявок на помощь"""
     citi_name = models.ForeignKey(City, on_delete=models.PROTECT, verbose_name='Город')
+    user = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name='Автор')
     title = models.CharField(max_length=200, verbose_name='Тип помощи')
     text = models.TextField(verbose_name='Полная информация')
     pub_date = models.DateTimeField(auto_now=True, auto_now_add=False, verbose_name='Дата создания')

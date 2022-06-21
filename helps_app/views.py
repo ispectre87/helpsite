@@ -7,6 +7,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 class HelpHomepage(generic.ListView):
     model = Region                          #модель на основании которой строится список
@@ -79,6 +80,7 @@ class HelpRequests(generic.ListView):
 #     template_name = 'helps_app/need_help.html'
 #     pk_url_kwarg = 'city_id'
 
+@login_required
 def need_help(request, city_id):
     """Форма заявки на помощь"""
     if request.method != 'POST':
@@ -88,6 +90,7 @@ def need_help(request, city_id):
         if form.is_valid():
             q = form.save(commit=False)
             q.citi_name_id = city_id
+            q.user_id = request.user.id
             q.save()
             return redirect('helps_app:request_added')
     context = {'form': form, 'city_id': city_id}
