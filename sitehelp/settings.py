@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-&e#y28&y%6+uwm)4$_tl^cz1l#r2or8dggllw&x417u)1s@z+u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['quiet-caverns-74790.herokuapp.com']
 
 # Настройки Heroku
 # import django_heroku
