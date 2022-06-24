@@ -27,9 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# Настройки Heroku
-import django_heroku
-django_heroku.settings(locals())
+
 
 
 # Application definition
@@ -149,3 +147,7 @@ CACHES = {
         'LOCATION': os.path.join(BASE_DIR, 'cache'),
     }
 }
+
+# Настройки Heroku
+import django_heroku
+django_heroku.settings(locals())
