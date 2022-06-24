@@ -22,6 +22,7 @@ from sitehelp import settings
 
 urlpatterns = [
     path('', include('helps_app.urls')),
+    path('captcha/', include('captcha.urls')),
     path('admin/', admin.site.urls),
 ]
 

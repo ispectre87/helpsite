@@ -3,12 +3,15 @@
 {% block title %}Выбор города{% endblock %}
 
 {% block leftbody %}
+{% load cache %}
+{% cache 3600 citi_es %}
     <h2 style="text-align: center">Выберите город:</h2>
     <ul>
         {% for city in cities %}
         <li><a href="{{ city.get_absolute_url }}">{{ city }}</a></li>
         {% endfor %}
     </ul>
+{% endcache %}
 {% endblock %}
 {% block rightbody %}
     {% if 'Автономная Республика Крым' in region.region_name %}
@@ -16,11 +19,19 @@
     {% else %}
         <h2>{{ region }} область - список заявок по региону</h2>
     {% endif %}
-    <p>Чтобы показать заявки по конкретному городу или подать заявку на получение помощи <br> выберите город из списка на панели слева</p>
+    <ul>
+    <li><p>Чтобы сузить список заявок выберите населенный пункт из списка слева</p></li>
+    {% if request.user.is_authenticated %}
+    <li><p>Чтобы оформить просьбу на получение помощи выберите населенный пункт из списка слева. <br>
+        Если вашего населенного пункта нет в списке - выберите ближайший,<br>
+        а затем в контактах укажите ваш населенный пункт.
+    </p></li>
+    {% endif %}
+    </ul>
     <br>
         {% if page_obj %}
             {% for reqst in page_obj %}
-<p class="request_title"><a href="{{ reqst.get_absolute_url }}">{{ reqst }}</a><span style="float: right">{{ reqst.update|date:"d.m.y" }}</span></p>
+<p class="request_title">{{ reqst }} - <a href="{{ reqst.get_absolute_url }}">Подробнее</a><span style="float: right">{{ reqst.update|date:"d.m.y" }}</span></p>
                 <p class="request_text">{{ reqst.text|truncatewords:50 }}</p>
                 <br>
             {% endfor %}

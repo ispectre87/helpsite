@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'helps_app.apps.HelpsAppConfig',
     #Installes apps
     "debug_toolbar",
+    'captcha',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -137,3 +138,10 @@ INTERNAL_IPS = [
 ]
 
 LOGIN_URL = '/login/'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'cache'),
+    }
+}

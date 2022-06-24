@@ -32,7 +32,7 @@ class CitiesList(generic.ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
-        helprequests = HelpRequest.objects.filter(citi_name__region_id=self.kwargs['region_id']).order_by('update')
+        helprequests = HelpRequest.objects.filter(citi_name__region_id=self.kwargs['region_id']).order_by('-update')
         paginator = Paginator(helprequests, 20)
         page_number = self.request.GET.get('page')
         context['page_obj'] = paginator.get_page(page_number)
@@ -63,7 +63,7 @@ class HelpRequests(generic.ListView):
         return context
 
     def get_queryset(self):
-        return HelpRequest.objects.filter(citi_name_id = self.kwargs['city_id']).order_by('update')
+        return HelpRequest.objects.filter(citi_name_id = self.kwargs['city_id']).order_by('-update')
 
 # def help_requests(request, city_id, region_id):
 #     """Отображает список заявок по городу"""
