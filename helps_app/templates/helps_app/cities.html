@@ -3,15 +3,12 @@
 {% block title %}Выбор города{% endblock %}
 
 {% block leftbody %}
-{% load cache %}
-{% cache 3600 citi_es %}
     <h2 style="text-align: center">Выберите город:</h2>
     <ul>
         {% for city in cities %}
         <li><a href="{{ city.get_absolute_url }}">{{ city }}</a></li>
         {% endfor %}
     </ul>
-{% endcache %}
 {% endblock %}
 {% block rightbody %}
     {% if 'Автономная Республика Крым' in region.region_name %}
