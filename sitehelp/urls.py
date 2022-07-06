@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('helps_app.urls')),
     path('captcha/', include('captcha.urls')),
     path('admin/', admin.site.urls),
+    path('api/v1/', include('helps_app_api.urls')),
 ]
 
 if settings.DEBUG:

@@ -4,15 +4,12 @@
 
 
 {% block leftbody %}
-{% load cache %}
-{% cache 3600 region_es %}
   <h2 style="text-align: center">Выберите область:</h2>
   <ul>
   {% for region in regions %}
       <li><a href="{{ region.get_absolute_url }}">{{ region.region_name }}</a></li>
   {% endfor %}
   </ul>
-{% endcache %}
 {% endblock %}
 {% block rightbody %}
   <h2>Добро пожаловать</h2>
