@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf.urls.static import static
 
 from sitehelp import settings
@@ -25,6 +25,7 @@ urlpatterns = [
     path('captcha/', include('captcha.urls')),
     path('admin/', admin.site.urls),
     path('api/v1/', include('helps_app_api.urls')),
+    path('api/v1/auth/', include('rest_framework.urls')),
 ]
 
 if settings.DEBUG:

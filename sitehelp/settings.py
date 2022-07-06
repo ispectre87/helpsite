@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -150,14 +152,22 @@ CACHES = {
     }
 }
 
-#Настройки Heroku
-import django_heroku
-django_heroku.settings(locals())
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
 
-if os.environ.get('DEBUG') == 'TRUE':
-    DEBUG = True
-else:
-    DEBUG = False
+#Настройки Heroku
+# import django_heroku
+# django_heroku.settings(locals())
+#
+# if os.environ.get('DEBUG') == 'TRUE':
+#     DEBUG = True
+# else:
+#     DEBUG = False
 
 
 

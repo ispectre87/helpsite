@@ -3,6 +3,7 @@ from helps_app.models import HelpRequest, Region, City
 
 class HelpRequestSerializer(serializers.ModelSerializer):
     """Готовый сериализатор"""
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     class Meta:
         model = HelpRequest
         fields = "__all__"

@@ -1,41 +1,53 @@
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.views import APIView
+from rest_framework import viewsets
 from helps_app.models import HelpRequest, Region, City
 from .serializers import HelpRequestSerializer, CitySerializer, RegionSerializer
 from rest_framework.response import Response
 from django.forms import model_to_dict
+from rest_framework.permissions import IsAdminUser
+from .permissions import IsAdminorReadOnly
 
 class HelpRequestsApiView(generics.ListCreateAPIView):
     """Выдает данные по get запросу и сохраняет по post-запросу с использование сериализатора"""
     queryset = HelpRequest.objects.all()
     serializer_class = HelpRequestSerializer
+    permission_classes = (IsAdminorReadOnly, )
 
 class HelpRequestsApiUpdate(generics.RetrieveUpdateDestroyAPIView):
     """Обновляет или удаляет данные по запросу"""
     queryset = HelpRequest.objects.all()
     serializer_class = HelpRequestSerializer
+    permission_classes = (IsAdminorReadOnly, )
 
-class CityApiView(generics.ListCreateAPIView):
-    """Выдает данные по get запросу и сохраняет по post-запросу с использование сериализатора"""
+class CityApi(viewsets.ModelViewSet):
+    """Используем viewset чобы избежать дублирования кода"""
     queryset = City.objects.all()
     serializer_class = CitySerializer
+    permission_classes = (IsAdminorReadOnly, )
 
-class CityApiUpdate(generics.RetrieveUpdateDestroyAPIView):
-    """Обновляет или удаляет данные по запросу"""
-    queryset = City.objects.all()
-    serializer_class = CitySerializer
+# class CityApiView(generics.ListCreateAPIView):
+#     """Выдает данные по get запросу и сохраняет по post-запросу с использование сериализатора"""
+#     queryset = City.objects.all()
+#     serializer_class = CitySerializer
+#
+# class CityApiUpdate(generics.RetrieveUpdateDestroyAPIView):
+#     """Обновляет или удаляет данные по запросу"""
+#     queryset = City.objects.all()
+#     serializer_class = CitySerializer
 
 class RegionApiView(generics.ListCreateAPIView):
     """Выдает данные по get запросу и сохраняет по post-запросу с использование сериализатора"""
     queryset = Region.objects.all()
     serializer_class = RegionSerializer
+    permission_classes = (IsAdminorReadOnly, )
 
 class RegionApiUpdate(generics.RetrieveUpdateDestroyAPIView):
     """Обновляет или удаляет данные по запросу"""
     queryset = Region.objects.all()
     serializer_class = RegionSerializer
-
+    permission_classes = (IsAdminorReadOnly, )
 
 # class HelpRequestsApiViewNoSerializer(APIView):
 #     """Наследует самый базовый класс. Методы прописывааются"""
