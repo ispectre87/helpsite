@@ -150,14 +150,14 @@ CACHES = {
     }
 }
 
-# Настройки Heroku
-# import django_heroku
-# django_heroku.settings(locals())
+Настройки Heroku
+import django_heroku
+django_heroku.settings(locals())
 
-# if os.environ.get('DEBUG') == 'TRUE':
-#     DEBUG = True
-# else:
-#     DEBUG = False
+if os.environ.get('DEBUG') == 'TRUE':
+    DEBUG = True
+else:
+    DEBUG = False
 
 
 
