@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import HelpRequest, City, Region
 from .forms import CreateRequest, UserRegister
+from django.http import Http404
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth import login, logout
@@ -163,4 +164,28 @@ def logout_user(request):
 def about(request):
     return render(request, "helps_app/about.html")
 
+def user_records(request):
+    my_requests = HelpRequest.objects.filter(user_id=request.user.id)
+    context = {
+        'my_requests': my_requests,
+    }
+    return render(request, 'helps_app/my_records.html', context)
 
+def edit_record(request, help_id):
+    """Изменение заявки пользователя"""
+    help_info = HelpRequest.objects.get(pk=help_id)
+    if help_info.user != request.user:
+        raise Http404
+
+    if request.method != 'POST':
+        form = CreateRequest(instance=help_info)
+    else:
+        form = CreateRequest(instance=help_info, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('helps_app:record_changed')
+    context = {'form': form, 'help_id': help_id}
+    return render(request, 'helps_app/edit_record.html', context)
+
+def record_changed(request):
+    return render(request, 'helps_app/record_changed.html')

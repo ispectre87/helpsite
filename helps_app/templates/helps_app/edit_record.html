@@ -1,0 +1,14 @@
+{% extends 'helps_app/base.html' %}
+{% block title %}Мои запросы{% endblock %}
+
+{% block rightbody %}
+    <div class="content">
+        <p>Здесь вы можете изменить информацию о вашей заявке</p>
+            <form action="{% url 'helps_app:edit_record' help_id %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button name="submit">Сохранить изменения</button>
+
+            </form>
+    </div>
+{% endblock %}

@@ -38,8 +38,8 @@ class HelpRequest(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name='Автор')
     title = models.CharField(max_length=200, verbose_name='Тип помощи')
     text = models.TextField(verbose_name='Полная информация')
-    pub_date = models.DateTimeField(auto_now=True, auto_now_add=False, verbose_name='Дата создания')
-    update = models.DateTimeField(auto_now=False, auto_now_add=True, verbose_name='Дата обновления')
+    pub_date = models.DateTimeField(auto_now=True, auto_now_add=False, verbose_name='Дата обновления') #обновляется при изменении записи
+    update = models.DateTimeField(auto_now=False, auto_now_add=True, verbose_name='Дата создания') #не обновляется при изменении записи
     contacts = models.TextField(verbose_name='Контакты')
 
     def __str__(self):
@@ -47,6 +47,9 @@ class HelpRequest(models.Model):
 
     def get_absolute_url(self):
         return reverse('helps_app:help_request_detail', kwargs={'help_id': self.pk,})
+
+    def edit_record(self):
+        return reverse('helps_app:edit_record', kwargs={'help_id': self.pk,})
 
     class Meta():
         verbose_name = 'Список заявок'

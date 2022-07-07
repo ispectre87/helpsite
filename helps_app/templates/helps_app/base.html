@@ -18,7 +18,7 @@
             <td class="righthead">
                 <ul style="display: inline">
                     {% if request.user.is_authenticated %}
-                        <li>Привет, {{ user.username }}   |   <a href="{% url 'helps_app:logout' %}">Выйти</a></li>
+                        <li>Привет, {{ user.username }}   |   <a href="{% url 'helps_app:my_records' %}">Мои запросы</a>   |   <a href="{% url 'helps_app:logout' %}">Выйти</a></li>
                     {% else %}
                         <li><a href="{% url 'helps_app:registration' %}">Регистрация</a></li>
                         <li><a href="{% url 'helps_app:login' %}">Вход</a></li>

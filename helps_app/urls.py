@@ -15,4 +15,7 @@ urlpatterns = [
     path('help_request_detail/<int:help_id>/', views.HelpRequestDetail.as_view(), name='help_request_detail'),
     path('need_help/<int:city_id>/', views.need_help, name='need_help'),
     path('request_added/', views.request_added, name='request_added'),
+    path('my_records/', views.user_records, name='my_records'),
+    path('edit_record/<int:help_id>', views.edit_record, name='edit_record'),
+    path('record_changed', views.record_changed, name='record_changed'),
 ]

@@ -6,7 +6,7 @@
 
 {% block rightbody %}
     <h2>Информация по заявке</h2><br>
-    <p  class="request_title">Дата подачи заявки: {{ request_detail.pub_date }}</p>
+    <p  class="request_title">Дата подачи заявки: {{ request_detail.update|date:"d.m.y" }}</p>
     <p class="request_title">Желаемая помощь:</p>
     <p class="request_text">{{ request_detail.title }}</p>
     <p class="request_title">Детальная информация:</p>

@@ -1,0 +1,17 @@
+{% extends 'helps_app/base.html' %}
+{% block title %}Мои запросы{% endblock %}
+
+{% block rightbody %}
+ {% if my_requests %}
+        <h2>Мои заявки</h2>
+      {% for title in my_requests %}
+<p class="request_title">{{ title }} - <a href="{{ title.edit_record }}">Редактировать</a><span style="float: right">{{ title.update|date:"d.m.y" }}</span></p>
+        <p class="request_text">{{ title.text|truncatewords:50 }}</p>
+        <br>
+      {% endfor %}
+     {% else %}
+        <p>Пока нет заявок</p>
+     {% endif %}
+
+{% endblock %}
+
